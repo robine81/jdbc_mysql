@@ -19,4 +19,37 @@ public class DBConnection {
             return null;
         }
     }
+
+    public static Connection createDatabase(String databaseName)
+    {
+        String sqlCreate = "CREATE DATABASE IF NOT EXISTS " + databaseName;
+        String sqlUseDb = "USE " + databaseName;
+        try ( Connection conn = DBConnection.getConnection();
+            Statement stmt = conn.createStatement())
+        {
+            stmt.executeUpdate(sqlCreate);
+
+            stmt.execute(sqlUseDb);
+            return null;
+        } catch(SQLException e){
+            System.out.printf("Failed to create database %s: " + e.getMessage(), databaseName);
+            return null;
+        }
+    }
+
+    public static Connection useDatabase(String databaseName)
+    {
+        String sqlUseDb = "USE " + databaseName;
+        try ( Connection conn = DBConnection.getConnection();
+              Statement stmt = conn.createStatement())
+        {
+            stmt.execute(sqlUseDb);
+            return conn;
+        } catch(SQLException e){
+            System.out.printf("Failed to use database %s: " + e.getMessage(), databaseName);
+            return null;
+        }
+    }
+
+
 }
