@@ -13,6 +13,33 @@ public class Student {
         this.city = city;
     }
 
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Student(String name, int age, String city) {
+        this.name = name;
+        this.age = age;
+        this.city = city;
+    }
+
+    public int getId() { return student_id; }
+
+    public void setId(int student_id) { this.student_id = student_id; }
+
+    public String getName() { return name;}
+
+    public void setName(String name) { this.name = name; }
+
+    public int getAge() { return age; }
+
+    public void setAge(int age) { this.age = age; }
+
+    public String getCity() { return city; }
+
+    public void setCity(String city) { this.city = city; }
+
     @Override
     public String toString(){
         final StringBuilder sb = new StringBuilder("Student{");
